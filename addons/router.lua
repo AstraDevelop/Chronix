@@ -1,9 +1,12 @@
-function init()
-    print("Router plugin initialized!")
+local function handle_request(req, res)
+    local path = req.url
+    if path == "/" then
+        res:send("Welcome to Chronix Server!")
+    elseif path == "/about" then
+        res:send("This is a simple router plugin")
+    else
+        res:status(404):send("Page Not Found")
+    end
 end
 
-function handleRequest(req)
-    return "Hello, this is the router plugin!"
-end
-
-init()
+return handle_request
